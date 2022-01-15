@@ -4,15 +4,8 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        best_sum = nums[0]
-        current_sum = 0
-
-        for num in nums:
-            current_sum += num
-
-            best_sum = max(best_sum, current_sum)
-
-            if current_sum < 0:
-                current_sum = 0
-
-        return best_sum
+        n = len(nums)
+        dp = [nums[0]]
+        for i in range(1, n):
+            dp.append(max(nums[i], dp[i-1]+nums[i]))
+        return max(dp)
